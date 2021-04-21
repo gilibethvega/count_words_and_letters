@@ -21,6 +21,7 @@ function countCharacter(){
     for (let i of str) {
         findCharacter(i, characters);
     };
+    //construyendo HTML
     var resultados = document.getElementById("resultados");
     for (let i in characters) {
         var strong = document.createElement("strong");
@@ -34,7 +35,49 @@ function countCharacter(){
     }
 };
 
+//Lógica de palabras
+
+function Word(word, cantidad=1){
+    this.word = word;
+    this.cantidad = cantidad;
+};
+//función que busca y agrega letras
+function findWords(word, words){
+    var find_it = false;
+    for (const w in words) {
+        if (words[w].word == word) {
+            words[w].cantidad += 1;
+            find_it = true;
+            break;
+        };
+    };
+    if(!find_it){words.push(new Word(word))};
+};
+//Funcion que cuenta palabras
+
+function countWords() {
+    var str = (document.getElementById("texto-entrada").innerHTML).toString().trim().replace(/ /g,",").toLowerCase().split(",");
+    var words = [];
+    for (const p of str) {
+        findWords(p, words);
+    };
+    //Construyendo HTML
+    var resultados = document.getElementById("resultados");
+    for (const i in words) {
+        var p = document.createElement("p");
+        var strong = document.createElement("strong");
+        var span = document.createElement("span");
+        strong.appendChild(document.createTextNode("Plabra "+words[i].word+": "));
+        span.appendChild(document.createTextNode(words[i].cantidad));
+        p.appendChild(strong);
+        p.appendChild(span);
+        resultados.appendChild(p);
+    };
+};
+
+//llamar funciones
 countCharacter()
+countWords()
 
 
 
