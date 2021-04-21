@@ -37,16 +37,16 @@ function countCharacter(){
 
 //Lógica de palabras
 
-function Word(word, cantidad=1){
+function Word(word, quantity=1){
     this.word = word;
-    this.cantidad = cantidad;
+    this.quantity = quantity;
 };
 //función que busca y agrega letras
 function findWords(word, words){
     var find_it = false;
     for (const w in words) {
         if (words[w].word == word) {
-            words[w].cantidad += 1;
+            words[w].quantity += 1;
             find_it = true;
             break;
         };
@@ -67,8 +67,8 @@ function countWords() {
         var p = document.createElement("p");
         var strong = document.createElement("strong");
         var span = document.createElement("span");
-        strong.appendChild(document.createTextNode("Plabra "+words[i].word+": "));
-        span.appendChild(document.createTextNode(words[i].cantidad));
+        strong.appendChild(document.createTextNode("Palabra "+words[i].word+": "));
+        span.appendChild(document.createTextNode(words[i].quantity));
         p.appendChild(strong);
         p.appendChild(span);
         resultados.appendChild(p);
